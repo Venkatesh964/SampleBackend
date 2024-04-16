@@ -1,24 +1,16 @@
-import { useEffect, useState } from 'react'
 import './App.css'
 import axios from 'axios';
 import useEmployeeData from './hooks/EmployeeData';
 
 function App() {
 
-    // const API_URL=process.env.API_URL;
-    // console.log(API_URL);
     const { data,
         loading,
         name,title,setName,setTitle,setData}=useEmployeeData();
-    // const [data,setData]=useState([{_id:"",name:"",age:null,title:"",Department:""}]);
-    // const [name,setName]=useState("");
-    // const [title,setTitle]=useState("");
-
-    // useEffect(()=>{
-       
-    //     const response=axios.get("http://localhost:3000/").then((re)=>setData(re.data));
-       
-    // },[name,title]);
+   
+    if(loading){
+        return <div>Loading..</div>
+    }
 
   return (
     <div>
@@ -36,7 +28,7 @@ function App() {
             </div>
 
             <button className='ml-1 border border-black rounded  bg-slate-300 px-1' onClick={()=>{
-                try{ axios.get(`http://localhost:3000/bulk?name=${name}&title=${title}`).then((res)=>setData(res.data));
+                try{ axios.get(`https://samplefrontend-1.onrender.com/bulk?name=${name}&title=${title}`).then((res)=>setData(res.data));
                 console.log(data);
                 console.log(typeof(data));
             //  alert(data);
@@ -64,7 +56,7 @@ function App() {
       <tbody> */}
             
         <div className="overflow-x-auto ">
-            <table className="table-auto bg-white rounded-lg">
+            <table className=" w-full table-auto font-medium bg-white rounded-lg">
                 <thead className="text-xs text-gray-700  bg-gray-50">
                     <tr>
                         <th scope="col" className="px-6 py-3">
@@ -84,7 +76,7 @@ function App() {
                 <tbody>
                
                     {data.map((d)=>(
-                        <tr className="bg-white border-b even:bg-slate-50" key={d._id}>
+                        <tr className="bg-white border-b font-medium even:bg-slate-50" key={d._id}>
                             <th scope="row" className="px-6 py-4 font-medium whitespace-nowrap ">
                             {d.name}
                             </th>
@@ -104,15 +96,6 @@ function App() {
         </div>
     </div>
   )
-}
-
-
-function Filter(){
-    return 
-}
-
-function AddEmployees(){
-
 }
 
 export default App

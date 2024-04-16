@@ -9,7 +9,7 @@ export default function useEmployeeData(){
     const [title,setTitle]=useState("");
     useEffect(()=>{
        try{
-        const response=axios.get("http://localhost:3000/").then((re)=>{setData(re.data) ;setLoading(false)});
+        const response=axios.get("https://samplefrontend-1.onrender.com/").then((re)=>{setData(re.data) ;setLoading(false)});
        }catch(e){
         console.log(e);
        }
